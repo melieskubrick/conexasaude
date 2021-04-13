@@ -14,6 +14,11 @@
 		3621C2B09300A78CAB0D5A71 /* libPods-conexasaude-conexasaudeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B7FF1448616803C27E933 /* libPods-conexasaude-conexasaudeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B4E8E875CFA8582452EFD006 /* libPods-conexasaude.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C525FF83D69F217FF66930C5 /* libPods-conexasaude.a */; };
+		FAB48D942626452F00E7B165 /* ITCAvantGardeStdXLt.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB48D8F2626452F00E7B165 /* ITCAvantGardeStdXLt.otf */; };
+		FAB48D952626452F00E7B165 /* ITCAvantGardeStdBk.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB48D902626452F00E7B165 /* ITCAvantGardeStdBk.otf */; };
+		FAB48D962626452F00E7B165 /* ITCAvantGardeStdBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB48D912626452F00E7B165 /* ITCAvantGardeStdBold.otf */; };
+		FAB48D972626452F00E7B165 /* ITCAvantGardeStdDemi.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB48D922626452F00E7B165 /* ITCAvantGardeStdDemi.otf */; };
+		FAB48D982626452F00E7B165 /* ITCAvantGardeStdMd.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB48D932626452F00E7B165 /* ITCAvantGardeStdMd.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		839ADF329A819F3F8EB03AE7 /* Pods-conexasaude-conexasaudeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-conexasaude-conexasaudeTests.debug.xcconfig"; path = "Target Support Files/Pods-conexasaude-conexasaudeTests/Pods-conexasaude-conexasaudeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C525FF83D69F217FF66930C5 /* libPods-conexasaude.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-conexasaude.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FAB48D8F2626452F00E7B165 /* ITCAvantGardeStdXLt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ITCAvantGardeStdXLt.otf; path = ../android/app/src/main/assets/fonts/ITCAvantGardeStdXLt.otf; sourceTree = "<group>"; };
+		FAB48D902626452F00E7B165 /* ITCAvantGardeStdBk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ITCAvantGardeStdBk.otf; path = ../android/app/src/main/assets/fonts/ITCAvantGardeStdBk.otf; sourceTree = "<group>"; };
+		FAB48D912626452F00E7B165 /* ITCAvantGardeStdBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ITCAvantGardeStdBold.otf; path = ../android/app/src/main/assets/fonts/ITCAvantGardeStdBold.otf; sourceTree = "<group>"; };
+		FAB48D922626452F00E7B165 /* ITCAvantGardeStdDemi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ITCAvantGardeStdDemi.otf; path = ../android/app/src/main/assets/fonts/ITCAvantGardeStdDemi.otf; sourceTree = "<group>"; };
+		FAB48D932626452F00E7B165 /* ITCAvantGardeStdMd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ITCAvantGardeStdMd.otf; path = ../android/app/src/main/assets/fonts/ITCAvantGardeStdMd.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,7 @@
 		13B07FAE1A68108700A75B9A /* conexasaude */ = {
 			isa = PBXGroup;
 			children = (
+				FAB48D9B2626453800E7B165 /* fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -114,7 +125,6 @@
 				839ADF329A819F3F8EB03AE7 /* Pods-conexasaude-conexasaudeTests.debug.xcconfig */,
 				6274659F140C87E509F7CC7E /* Pods-conexasaude-conexasaudeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -147,6 +157,18 @@
 				00E356EE1AD99517003FC87E /* conexasaudeTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FAB48D9B2626453800E7B165 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FAB48D902626452F00E7B165 /* ITCAvantGardeStdBk.otf */,
+				FAB48D912626452F00E7B165 /* ITCAvantGardeStdBold.otf */,
+				FAB48D922626452F00E7B165 /* ITCAvantGardeStdDemi.otf */,
+				FAB48D932626452F00E7B165 /* ITCAvantGardeStdMd.otf */,
+				FAB48D8F2626452F00E7B165 /* ITCAvantGardeStdXLt.otf */,
+			);
+			name = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +265,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB48D942626452F00E7B165 /* ITCAvantGardeStdXLt.otf in Resources */,
+				FAB48D952626452F00E7B165 /* ITCAvantGardeStdBk.otf in Resources */,
+				FAB48D962626452F00E7B165 /* ITCAvantGardeStdBold.otf in Resources */,
+				FAB48D972626452F00E7B165 /* ITCAvantGardeStdDemi.otf in Resources */,
+				FAB48D982626452F00E7B165 /* ITCAvantGardeStdMd.otf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
