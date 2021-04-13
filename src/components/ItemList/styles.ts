@@ -28,19 +28,19 @@ export const Image = styled.View`
 export const TextImage = styled.Text`
   font-size: 30px;
   font-family: ${typography.regular};
-  color: ${colors.darkBlue};
+  color: ${colors.blue};
 `;
 
 export const Title = styled.Text`
   font-size: 20px;
   font-family: ${typography.bold};
-  color: ${colors.white};
+  color: ${colors.gray};
   width: ${Dimensions.get('window').width / 1.8};
 `;
 
 export const Description = styled.Text`
   font-size: 18px;
   font-family: ${typography.light};
-  color: ${colors.white};
+  color: ${colors.gray};
   width: ${Dimensions.get('window').width / 1.8};
 `;

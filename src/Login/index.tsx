@@ -9,6 +9,7 @@ import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import api from '../services/api';
 import {SignInCredentials} from '../services/types';
+import {Actions} from 'react-native-router-flux';
 
 const Login = () => {
   const formRef = useRef<FormHandles>(null);
@@ -21,10 +22,10 @@ const Login = () => {
       const response = await api.post('api/login', data);
       if (!response.data) {
         console.log('error');
-
         return;
       }
-      console.log('data', response.data);
+      const dataResponse = response.data;
+      Actions.listConsultations({token: dataResponse.data.token});
     } catch (error) {
       console.log('error', error);
     }
