@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import api, {useFetch} from '../services/api';
 
+import moment from 'moment';
+import 'moment/locale/pt-br';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+
 import {FlatList, Text} from 'react-native';
 
 import {Container} from './styles';
@@ -36,11 +40,15 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
   return (
     <Container>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={data}
+        contentContainerStyle={{paddingVertical: getStatusBarHeight()}}
         renderItem={({item}) => (
           <ItemList
             title={item.paciente}
-            description={`Médico: ${item.medico.nome}`}
+            doctorName={item.medico.nome}
+            consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
+            description={item.observacao}
           />
         )}
       />
