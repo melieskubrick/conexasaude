@@ -16,7 +16,7 @@ Aqui estão os pods que foram utilizados para a construção deste app! Estes po
 * [Router Flux](https://github.com/aksonov/react-native-router-flux)
 <br/>Facilita o manuseio das páginas (rotas) da apliacação, além de facilitar nas actions da mesma.
 * [Unform](unform.dev)
-<br/>É uma API focada em desempenho para criar experiências de formulários
+<br/>É uma API focada em desempenho para criar experiências de formulários.
 * [Async Storage](https://github.com/react-native-async-storage/async-storage)
 <br/>Um sistema de armazenamento de valor-chave assíncrono, não criptografado.
 * [Swr](https://github.com/vercel/swr)
@@ -26,4 +26,4 @@ Aqui estão os pods que foram utilizados para a construção deste app! Estes po
 * [Moment](https://redux.js.org/)
 <br/>Lib para formatação da data.
 * [Lottie](https://github.com/react-native-community/lottie-react-native)
-<br/>Lib para animações em formato json
+<br/>Lib para animações em formato json.
