@@ -10,6 +10,7 @@ import api from '../../services/api';
 import {Container} from './styles';
 import Header from '../../components/Header';
 import {Actions} from 'react-native-router-flux';
+import Loading from '../../utils/Loading';
 
 interface DetailConsultationProps {
   token: string;
@@ -40,6 +41,14 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
     };
     detailConsultation();
   }, []);
+
+  if (!data) {
+    return (
+      <Container>
+        <Loading visible={true} />
+      </Container>
+    );
+  }
 
   return (
     <>

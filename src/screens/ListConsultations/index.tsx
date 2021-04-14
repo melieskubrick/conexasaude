@@ -11,13 +11,14 @@ import {Container} from './styles';
 import ItemList from '../../components/ItemList';
 import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
+import Loading from '../../utils/Loading';
 
 interface ListConsultationsProps {
   token: string;
 }
 
 const ListConsultations = ({token}: ListConsultationsProps) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     console.log('token', token);
@@ -38,6 +39,14 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
     };
     listConsultations();
   }, []);
+
+  if (!data) {
+    return (
+      <Container>
+        <Loading visible={true} />
+      </Container>
+    );
+  }
 
   const getUserNameToAvatar = (value: string) => {
     if (!value) {
