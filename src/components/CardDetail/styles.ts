@@ -32,12 +32,11 @@ export const Detail = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 20px;
+  font-size: 24px;
   font-family: ${typography.light};
   color: ${colors.blue};
   text-align: right;
   margin: 24px 20px 0 -20px;
-  width: 96px;
 `;
 
 export const Description = styled.Text<DescriptionProps>`
@@ -48,6 +47,7 @@ export const Description = styled.Text<DescriptionProps>`
   margin: 10px 24px 24px 24px;
   text-transform: capitalize;
   max-height: 90px;
+  text-align: right;
 `;
 
 export const Image = styled.Image.attrs({

@@ -17,6 +17,7 @@ interface DetailConsultationProps {
 
 const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
   const [data, setData] = useState([]);
+  const [doctor, setDoctor] = useState([]);
 
   useEffect(() => {
     console.log('token', token);
@@ -31,6 +32,7 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
         }
         const dataJson = response.data;
         setData(dataJson.data);
+        setDoctor(dataJson.data.medico.nome);
       } catch (error) {
         console.log('error', error);
       }
@@ -41,17 +43,34 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
   return (
     <Container>
       <CardDetail
-        title={data.paciente}
+        title="Nome do paciente:"
         color="white"
         icon="user"
-        description={moment(data.dataConsulta).format('DD MMMM YYYY')}
+        // description={moment(data.dataConsulta).format('DD MMMM YYYY')}
+        description={data.paciente}
         onPress={() => console.log()}
       />
       <CardDetail
-        title={data.medico.nome}
+        title={'Nome do médico:'}
         color="white"
         icon="user"
-        description={moment(data.dataConsulta).format('DD MMMM YYYY')}
+        description={doctor || 'Sem médico'}
+        onPress={() => console.log()}
+      />
+      <CardDetail
+        title={'Data da consulta:'}
+        color="white"
+        icon="clock"
+        description={
+          moment(data.dataConsulta).format('DD MMMM YYYY') || 'Sem data'
+        }
+        onPress={() => console.log()}
+      />
+      <CardDetail
+        title={'Observações:'}
+        color="white"
+        icon="file"
+        description={data.observacao || 'Sem obeservação'}
         onPress={() => console.log()}
       />
     </Container>
