@@ -76,14 +76,12 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
               description={
                 moment(data.dataConsulta).format('DD MMMM YYYY') || 'Sem data'
               }
-              onPress={() => console.log()}
             />
             <CardDetail
               title={'Observações:'}
               color="white"
               icon="file"
               description={data.observacao || 'Sem obeservação'}
-              onPress={() => console.log()}
             />
           </>
         </Animation>
