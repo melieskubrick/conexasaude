@@ -3,13 +3,13 @@ import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
+import {Actions} from 'react-native-router-flux';
 import {CardDetail} from '../../components/CardDetail';
 import colors from '../../config/colors';
 import api from '../../services/api';
 
 import {Container} from './styles';
 import Header from '../../components/Header';
-import {Actions} from 'react-native-router-flux';
 import Loading from '../../utils/Loading';
 import Animation from '../../utils/Animation';
 
@@ -29,15 +29,12 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
           headers: {Authorization: 'Bearer ' + token},
         });
         if (!response.data) {
-          console.log('error');
           return;
         }
         const dataJson = response.data;
         setData(dataJson.data);
         setDoctor(dataJson.data.medico.nome);
-      } catch (error) {
-        console.log('error', error);
-      }
+      } catch (e) {}
     };
     detailConsultation();
   }, []);

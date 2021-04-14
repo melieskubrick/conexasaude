@@ -1,16 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import api, {useFetch} from '../../services/api';
+import {FlatList, Text} from 'react-native';
+import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {Actions} from 'react-native-router-flux';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 
-import {FlatList, Text} from 'react-native';
-
 import {Container} from './styles';
 import ItemList from '../../components/ItemList';
-import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
 import Animation from '../../utils/Animation';
@@ -23,7 +22,6 @@ const ListConsultations = () => {
     try {
       const value = await AsyncStorage.getItem('@TOKEN');
       if (value !== null) {
-        console.log('token1', value);
         setToken(value);
       }
     } catch (e) {}
@@ -37,14 +35,11 @@ const ListConsultations = () => {
           headers: {Authorization: 'Bearer ' + token},
         });
         if (!response.data) {
-          console.log('error');
           return;
         }
         const dataJson = response.data;
         setData(dataJson.data);
-      } catch (error) {
-        console.log('error', error);
-      }
+      } catch (e) {}
     };
     listConsultations();
   }, [token]);

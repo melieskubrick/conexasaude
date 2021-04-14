@@ -1,17 +1,17 @@
 import React, {useRef} from 'react';
 import {Alert, Platform, TextInput} from 'react-native';
 import colors from '../../config/colors';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import {Button} from '../../components/Button';
-import Input from '../../components/Input';
-import {Container} from './styles';
-
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import api from '../../services/api';
 import {SignInCredentials} from '../../services/types';
 import {Actions} from 'react-native-router-flux';
+
+import {Button} from '../../components/Button';
+import Input from '../../components/Input';
+import {Container} from './styles';
 import Header from '../../components/Header';
 
 const Login = () => {
@@ -19,13 +19,10 @@ const Login = () => {
   const passwordInputRef = useRef<TextInput>(null);
 
   const handleSignIn = async (data: SignInCredentials) => {
-    console.log('data', data);
-
     if (!data.email || !data.senha) {
       Alert.alert('Preencha todos os campos');
       return;
     }
-
     try {
       const response = await api.post('api/login', data);
       if (!response.data) {
@@ -35,14 +32,11 @@ const Login = () => {
       const dataResponse = response.data;
       storeToken(dataResponse.data.token);
       Actions.listConsultations();
-    } catch (error) {
-      console.log('error', error);
-    }
+    } catch (e) {}
   };
 
   const storeToken = async (token: string) => {
     try {
-      console.log('Melies', token);
       await AsyncStorage.setItem('@TOKEN', token);
     } catch (e) {}
   };

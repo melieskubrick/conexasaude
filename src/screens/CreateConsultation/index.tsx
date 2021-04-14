@@ -1,23 +1,23 @@
 import React, {useRef} from 'react';
 import {Alert, Text, TextInput} from 'react-native';
+import api from '../../services/api';
+
+
+import ModalDatePicker from 'react-native-datepicker-modal';
+import Animation from '../../utils/Animation';
+import moment from 'moment';
+import 'moment/locale/pt-br';
+import colors from '../../config/colors';
+
 import {Actions} from 'react-native-router-flux';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
-
-import Header from '../../components/Header';
-import ModalDatePicker from 'react-native-datepicker-modal';
-
-import moment from 'moment';
-import 'moment/locale/pt-br';
+import {CreateConsultationCredentials} from '../../services/types';
 
 import {Button} from '../../components/Button';
+import Header from '../../components/Header';
 import Input from '../../components/Input';
-
 import {Container} from './styles';
-import api from '../../services/api';
-import {CreateConsultationCredentials} from '../../services/types';
-import colors from '../../config/colors';
-import Animation from '../../utils/Animation';
 
 interface ModalDatePickerProps {
   year: string;
@@ -34,7 +34,6 @@ const CreateConsultation = () => {
   const createConsultation = async (data: CreateConsultationCredentials) => {
 
     if (!data.paciente || !data.observacao) {
-      console.log('paciente', !data.dataConsulta);
       Alert.alert('Preencha todos os campos');
       return;
     }
