@@ -1,7 +1,8 @@
 import React from 'react';
 import {Router, Stack, Scene} from 'react-native-router-flux';
-import ListConsultations from '../ListConsultations';
-import Login from '../Login';
+import DetailConsultation from '../screens/DetailConsultation';
+import ListConsultations from '../screens/ListConsultations';
+import Login from '../screens/Login';
 
 const App = () => (
   <Router>
@@ -13,6 +14,7 @@ const App = () => (
         title="ListConsultations"
         hideNavBar
       />
+      <Scene key="detailConsultation" component={DetailConsultation} title="DetailConsultation" hideNavBar />
     </Stack>
   </Router>
 );

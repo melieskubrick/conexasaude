@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import api, {useFetch} from '../services/api';
+import api, {useFetch} from '../../services/api';
 
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -8,14 +8,15 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {FlatList, Text} from 'react-native';
 
 import {Container} from './styles';
-import ItemList from '../components/ItemList';
+import ItemList from '../../components/ItemList';
+import {Actions} from 'react-native-router-flux';
 
 interface ListConsultationsProps {
   token: string;
 }
 
 const ListConsultations = ({token}: ListConsultationsProps) => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     console.log('token', token);
@@ -37,18 +38,36 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
     listConsultations();
   }, []);
 
+  const getUserNameToAvatar = (value: string) => {
+    if (!value) {
+      return '';
+    }
+    if (value.length > 0 && value.split(' ')) {
+      const split = value.split(' ');
+      const firstname = split[0].charAt(0).toUpperCase();
+      const lastname = split[split.length - 1].charAt(0).toUpperCase();
+      return firstname + lastname;
+    }
+    return value.length > 0 ? value.charAt(0) : '';
+  };
+
   return (
     <Container>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={data}
+        keyExtractor={item => item.id}
         contentContainerStyle={{paddingVertical: getStatusBarHeight()}}
         renderItem={({item}) => (
           <ItemList
+            imageText={getUserNameToAvatar(item.paciente)}
             title={item.paciente}
             doctorName={item.medico.nome}
             consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
             description={item.observacao}
+            onPress={() =>
+              Actions.detailConsultation({token: token, idPatient: item.id})
+            }
           />
         )}
       />

@@ -35,7 +35,7 @@ export const CardDetail = ({
     <Card bgColor={color} onPress={onPress}>
       <AlignHorizontal>
         <Detail>
-          <Icon name={icon} color={colors.red} size={24} />
+          <Icon name={icon} color={colors.blue} size={24} />
         </Detail>
         <Title numberOfLines={2}>{title}</Title>
       </AlignHorizontal>

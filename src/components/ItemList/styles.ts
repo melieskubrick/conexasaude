@@ -37,9 +37,9 @@ export const Image = styled.View`
 `;
 
 export const TextImage = styled.Text`
-  font-size: 30px;
+  font-size: 24px;
   font-family: ${typography.regular};
-  color: ${colors.blue};
+  color: ${colors.gray};
 `;
 
 export const Title = styled.Text`

@@ -1,14 +1,14 @@
 import React, {useRef} from 'react';
 import {TextInput} from 'react-native';
-import {Button} from '../components/Button';
-import Input from '../components/Input';
-import colors from '../config/colors';
+import {Button} from '../../components/Button';
+import Input from '../../components/Input';
+import colors from '../../config/colors';
 import {Container} from './styles';
 
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
-import api from '../services/api';
-import {SignInCredentials} from '../services/types';
+import api from '../../services/api';
+import {SignInCredentials} from '../../services/types';
 import {Actions} from 'react-native-router-flux';
 
 const Login = () => {
