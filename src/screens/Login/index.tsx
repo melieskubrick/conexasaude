@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {TextInput} from 'react-native';
+import {Alert, TextInput} from 'react-native';
 import {Button} from '../../components/Button';
 import Input from '../../components/Input';
 import colors from '../../config/colors';
@@ -17,6 +17,11 @@ const Login = () => {
 
   const handleSignIn = async (data: SignInCredentials) => {
     console.log('data', data);
+
+    if (!data.email || !data.senha) {
+      Alert.alert('Preencha todos os campos');
+      return;
+    }
 
     try {
       const response = await api.post('api/login', data);
@@ -46,7 +51,6 @@ const Login = () => {
             passwordInputRef.current?.focus();
           }}
         />
-
         <Input
           ref={passwordInputRef}
           autoCorrect={false}

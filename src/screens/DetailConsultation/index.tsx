@@ -46,7 +46,6 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
         title="Nome do paciente:"
         color="white"
         icon="user"
-        // description={moment(data.dataConsulta).format('DD MMMM YYYY')}
         description={data.paciente}
         onPress={() => console.log()}
       />
