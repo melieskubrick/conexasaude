@@ -58,7 +58,8 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
         onPressLeft={() => Actions.pop()}
         iconLeft="arrow-left"
         title="Consultas agendadas"
-        iconRight='user-plus'
+        iconRight="user-plus"
+        onPressRight={() => Actions.createConsultation()}
       />
       <Container>
         <FlatList
