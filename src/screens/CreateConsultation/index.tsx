@@ -32,7 +32,6 @@ const CreateConsultation = () => {
   const observationRef = useRef<TextInput>(null);
 
   const createConsultation = async (data: CreateConsultationCredentials) => {
-    console.log('data', data);
 
     if (!data.paciente || !data.observacao) {
       console.log('paciente', !data.dataConsulta);
@@ -43,14 +42,12 @@ const CreateConsultation = () => {
     try {
       const response = await api.post('api/login', data);
       if (!response.data) {
-        console.log('error');
         return;
       }
       const dataResponse = response.data;
       Alert.alert('Consulta criada com sucesso');
       Actions.pop();
     } catch (error) {
-      console.log('error', error);
     }
   };
 

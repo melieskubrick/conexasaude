@@ -23,7 +23,6 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
   const [doctor, setDoctor] = useState([]);
 
   useEffect(() => {
-    console.log('token', token);
     const detailConsultation = async () => {
       try {
         const response = await api.get(`api/consulta/${idPatient}`, {
@@ -60,36 +59,36 @@ const DetailConsultation = ({token, idPatient}: DetailConsultationProps) => {
       />
       <Container>
         <Animation>
-          <CardDetail
-            title="Nome do paciente:"
-            color="white"
-            icon="user"
-            description={data.paciente}
-            onPress={() => console.log()}
-          />
-          <CardDetail
-            title={'Nome do médico:'}
-            color="white"
-            icon="user"
-            description={doctor || 'Sem médico'}
-            onPress={() => console.log()}
-          />
-          <CardDetail
-            title={'Data da consulta:'}
-            color="white"
-            icon="clock"
-            description={
-              moment(data.dataConsulta).format('DD MMMM YYYY') || 'Sem data'
-            }
-            onPress={() => console.log()}
-          />
-          <CardDetail
-            title={'Observações:'}
-            color="white"
-            icon="file"
-            description={data.observacao || 'Sem obeservação'}
-            onPress={() => console.log()}
-          />
+          <>
+            <CardDetail
+              title="Nome do paciente:"
+              color="white"
+              icon="user"
+              description={data.paciente}
+            />
+            <CardDetail
+              title={'Nome do médico:'}
+              color="white"
+              icon="user"
+              description={doctor || 'Sem médico'}
+            />
+            <CardDetail
+              title={'Data da consulta:'}
+              color="white"
+              icon="clock"
+              description={
+                moment(data.dataConsulta).format('DD MMMM YYYY') || 'Sem data'
+              }
+              onPress={() => console.log()}
+            />
+            <CardDetail
+              title={'Observações:'}
+              color="white"
+              icon="file"
+              description={data.observacao || 'Sem obeservação'}
+              onPress={() => console.log()}
+            />
+          </>
         </Animation>
       </Container>
     </>

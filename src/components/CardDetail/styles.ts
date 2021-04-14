@@ -5,9 +5,6 @@ import styled from 'styled-components/native';
 interface CardProps {
   bgColor: string;
 }
-interface DescriptionProps {
-  small: boolean;
-}
 
 export const Card = styled.TouchableOpacity<CardProps>`
   border-radius: 10px;
@@ -39,8 +36,8 @@ export const Title = styled.Text`
   margin: 24px 20px 0 -20px;
 `;
 
-export const Description = styled.Text<DescriptionProps>`
-  font-size: ${({small}) => (small ? 20 : 22)}px;
+export const Description = styled.Text`
+  font-size: 22px;
   font-family: ${typography.bold};
   color: ${colors.blue};
   text-align: left;

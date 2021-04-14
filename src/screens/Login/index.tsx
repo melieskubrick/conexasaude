@@ -1,8 +1,10 @@
 import React, {useRef} from 'react';
-import {Alert, TextInput} from 'react-native';
+import {Alert, Platform, TextInput} from 'react-native';
+import colors from '../../config/colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {Button} from '../../components/Button';
 import Input from '../../components/Input';
-import colors from '../../config/colors';
 import {Container} from './styles';
 
 import {Form} from '@unform/mobile';
@@ -31,10 +33,18 @@ const Login = () => {
         return;
       }
       const dataResponse = response.data;
-      Actions.listConsultations({token: dataResponse.data.token});
+      storeToken(dataResponse.data.token);
+      Actions.listConsultations();
     } catch (error) {
       console.log('error', error);
     }
+  };
+
+  const storeToken = async (token: string) => {
+    try {
+      console.log('Melies', token);
+      await AsyncStorage.setItem('@TOKEN', token);
+    } catch (e) {}
   };
 
   return (

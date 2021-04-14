@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import api, {useFetch} from '../../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -14,15 +15,22 @@ import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
 import Animation from '../../utils/Animation';
 
-interface ListConsultationsProps {
-  token: string;
-}
-
-const ListConsultations = ({token}: ListConsultationsProps) => {
+const ListConsultations = () => {
   const [data, setData] = useState(null);
+  const [token, setToken] = useState('');
+
+  const getToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@TOKEN');
+      if (value !== null) {
+        console.log('token1', value);
+        setToken(value);
+      }
+    } catch (e) {}
+  };
 
   useEffect(() => {
-    console.log('token', token);
+    getToken();
     const listConsultations = async () => {
       try {
         const response = await api.get('api/consultas', {
@@ -39,7 +47,7 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
       }
     };
     listConsultations();
-  }, []);
+  }, [token]);
 
   if (!data) {
     return (

@@ -20,7 +20,7 @@ interface CardSelectProps {
   color: string;
   icon: string;
   smallTitle?: boolean;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
 }
 
 export const CardDetail = ({
@@ -39,7 +39,7 @@ export const CardDetail = ({
         </Detail>
         <Title numberOfLines={2}>{title}</Title>
       </AlignHorizontal>
-      <Description small={smallTitle}>{description}</Description>
+      <Description>{description}</Description>
     </Card>
   );
 };
