@@ -10,6 +10,7 @@ import {FlatList, Text} from 'react-native';
 import {Container} from './styles';
 import ItemList from '../../components/ItemList';
 import {Actions} from 'react-native-router-flux';
+import Header from '../../components/Header';
 
 interface ListConsultationsProps {
   token: string;
@@ -52,26 +53,37 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
   };
 
   return (
-    <Container>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={data}
-        keyExtractor={item => item.id}
-        contentContainerStyle={{paddingVertical: getStatusBarHeight()}}
-        renderItem={({item}) => (
-          <ItemList
-            imageText={getUserNameToAvatar(item.paciente)}
-            title={item.paciente}
-            doctorName={item.medico.nome}
-            consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
-            description={item.observacao}
-            onPress={() =>
-              Actions.detailConsultation({token: token, idPatient: item.id})
-            }
-          />
-        )}
+    <>
+      <Header
+        onPressLeft={() => Actions.pop()}
+        iconLeft="arrow-left"
+        title="Consultas agendadas"
+        iconRight='user-plus'
       />
-    </Container>
+      <Container>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={data}
+          keyExtractor={item => item.id}
+          contentContainerStyle={{
+            paddingBottom: getStatusBarHeight(),
+            paddingTop: 8,
+          }}
+          renderItem={({item}) => (
+            <ItemList
+              imageText={getUserNameToAvatar(item.paciente)}
+              title={item.paciente}
+              doctorName={item.medico.nome}
+              consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
+              description={item.observacao}
+              onPress={() =>
+                Actions.detailConsultation({token: token, idPatient: item.id})
+              }
+            />
+          )}
+        />
+      </Container>
+    </>
   );
 };
 
