@@ -12,6 +12,7 @@ import ItemList from '../../components/ItemList';
 import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
+import Animation from '../../utils/Animation';
 
 interface ListConsultationsProps {
   token: string;
@@ -71,27 +72,29 @@ const ListConsultations = ({token}: ListConsultationsProps) => {
         onPressRight={() => Actions.createConsultation()}
       />
       <Container>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={data}
-          keyExtractor={item => item.id}
-          contentContainerStyle={{
-            paddingBottom: getStatusBarHeight(),
-            paddingTop: 8,
-          }}
-          renderItem={({item}) => (
-            <ItemList
-              imageText={getUserNameToAvatar(item.paciente)}
-              title={item.paciente}
-              doctorName={item.medico.nome}
-              consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
-              description={item.observacao}
-              onPress={() =>
-                Actions.detailConsultation({token: token, idPatient: item.id})
-              }
-            />
-          )}
-        />
+        <Animation>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={data}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{
+              paddingBottom: getStatusBarHeight(),
+              paddingTop: 8,
+            }}
+            renderItem={({item}) => (
+              <ItemList
+                imageText={getUserNameToAvatar(item.paciente)}
+                title={item.paciente}
+                doctorName={item.medico.nome}
+                consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
+                description={item.observacao}
+                onPress={() =>
+                  Actions.detailConsultation({token: token, idPatient: item.id})
+                }
+              />
+            )}
+          />
+        </Animation>
       </Container>
     </>
   );

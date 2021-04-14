@@ -17,6 +17,7 @@ import {Container} from './styles';
 import api from '../../services/api';
 import {CreateConsultationCredentials} from '../../services/types';
 import colors from '../../config/colors';
+import Animation from '../../utils/Animation';
 
 interface ModalDatePickerProps {
   year: string;
@@ -61,77 +62,79 @@ const CreateConsultation = () => {
         onPressLeft={() => Actions.pop()}
       />
       <Container>
-        <Form ref={formRef} onSubmit={createConsultation}>
-          <Input
-            autoCorrect={false}
-            autoCapitalize="none"
-            name="paciente"
-            icon="user"
-            placeholder="Nome do paciente"
-            returnKeyType="next"
-            onSubmitEditing={() => {
-              dateRef.current?.focus();
-            }}
-          />
-          <ModalDatePicker
-            renderDate={({year, month, day, date}: ModalDatePickerProps) => {
-              if (!date) {
+        <Animation>
+          <Form ref={formRef} onSubmit={createConsultation}>
+            <Input
+              autoCorrect={false}
+              autoCapitalize="none"
+              name="paciente"
+              icon="user"
+              placeholder="Nome do paciente"
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                dateRef.current?.focus();
+              }}
+            />
+            <ModalDatePicker
+              renderDate={({year, month, day, date}: ModalDatePickerProps) => {
+                if (!date) {
+                  return (
+                    <Input
+                      pointerEvents="none"
+                      autoCorrect={false}
+                      autoCapitalize="none"
+                      placeholder="Data da consulta"
+                      name="dataConsulta"
+                      icon="clock"
+                      value={moment().format('DD-MM-YYYY')}
+                      returnKeyType="send"
+                      onSubmitEditing={() => {
+                        dateRef.current?.focus();
+                      }}
+                    />
+                  );
+                }
+
+                const dateStr = `${day}-${month}-${year}`;
                 return (
                   <Input
-                    pointerEvents="none"
+                    ref={dateRef}
                     autoCorrect={false}
                     autoCapitalize="none"
                     placeholder="Data da consulta"
                     name="dataConsulta"
                     icon="clock"
-                    value={moment().format('DD-MM-YYYY')}
                     returnKeyType="send"
+                    value={dateStr}
                     onSubmitEditing={() => {
-                      dateRef.current?.focus();
+                      observationRef.current?.focus();
                     }}
                   />
                 );
-              }
+              }}
+            />
 
-              const dateStr = `${day}-${month}-${year}`;
-              return (
-                <Input
-                  ref={dateRef}
-                  autoCorrect={false}
-                  autoCapitalize="none"
-                  placeholder="Data da consulta"
-                  name="dataConsulta"
-                  icon="clock"
-                  returnKeyType="send"
-                  value={dateStr}
-                  onSubmitEditing={() => {
-                    observationRef.current?.focus();
-                  }}
-                />
-              );
-            }}
-          />
-
-          <Input
-            ref={observationRef}
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Observação"
-            name="observacao"
-            icon="file"
-            returnKeyType="send"
-            onSubmitEditing={() => {
-              formRef.current?.submitForm();
-            }}
-          />
-          <Button
-            title="Criar consulta"
-            buttonColor={colors.blue}
-            onPress={() => {
-              formRef.current?.submitForm();
-            }}
-          />
-        </Form>
+            <Input
+              ref={observationRef}
+              autoCorrect={false}
+              autoCapitalize="none"
+              placeholder="Observação"
+              name="observacao"
+              icon="file"
+              returnKeyType="send"
+              onSubmitEditing={() => {
+                formRef.current?.submitForm();
+              }}
+            />
+            <Button
+              title="Criar consulta"
+              buttonColor={colors.blue}
+              onPress={() => {
+                formRef.current?.submitForm();
+              }}
+            />
+          </Form>
+        </Animation>
       </Container>
     </>
   );
