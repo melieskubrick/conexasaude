@@ -15,8 +15,18 @@ const App = () => (
         title="ListConsultations"
         hideNavBar
       />
-      <Scene key="detailConsultation" component={DetailConsultation} title="DetailConsultation" hideNavBar />
-      <Scene key="createConsultation" component={CreateConsultation} title="CreateConsultation" hideNavBar />
+      <Scene
+        key="detailConsultation"
+        component={DetailConsultation}
+        title="DetailConsultation"
+        hideNavBar
+      />
+      <Scene
+        key="createConsultation"
+        component={CreateConsultation}
+        title="CreateConsultation"
+        hideNavBar
+      />
     </Stack>
   </Router>
 );

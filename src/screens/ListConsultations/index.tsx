@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text} from 'react-native';
+import {FlatList} from 'react-native';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,35 +14,41 @@ import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
 import Animation from '../../utils/Animation';
 
-const ListConsultations = () => {
-  const [data, setData] = useState(null);
-  const [token, setToken] = useState('');
+type Schedule = {
+  referralId: number;
+  scheduleDate: string;
+  partner: string;
+  professional: string;
+  location: string;
+};
 
-  const getToken = async () => {
+const ListConsultations = () => {
+  const [data, setData] = useState<Schedule[]>([{} as Schedule]);
+  const [userID, setUserID] = useState('');
+
+  const getUserID = async () => {
     try {
-      const value = await AsyncStorage.getItem('@TOKEN');
-      if (value !== null) {
-        setToken(value);
+      const user_id = await AsyncStorage.getItem('@USER_ID');
+      if (user_id !== null) {
+        setUserID(user_id);
       }
     } catch (e) {}
   };
 
   useEffect(() => {
-    getToken();
+    getUserID();
     const listConsultations = async () => {
       try {
-        const response = await api.get('api/consultas', {
-          headers: {Authorization: 'Bearer ' + token},
-        });
+        const response = await api.get(`/schedules/${userID}`);
         if (!response.data) {
           return;
         }
-        const dataJson = response.data;
-        setData(dataJson.data);
+        const schedule_data: Schedule[] = response.data;
+        setData(schedule_data);
       } catch (e) {}
     };
     listConsultations();
-  }, [token]);
+  }, [userID]);
 
   if (!data) {
     return (
@@ -86,13 +92,13 @@ const ListConsultations = () => {
             }}
             renderItem={({item}) => (
               <ItemList
-                imageText={getUserNameToAvatar(item.paciente)}
-                title={item.paciente}
-                doctorName={item.medico.nome}
-                consultation={moment(item.dataConsulta).format('DD MMMM YYYY')}
-                description={item.observacao}
+                imageText={getUserNameToAvatar(item.partner)}
+                title={item.partner}
+                doctorName={item.professional}
+                consultation={moment(item.scheduleDate).format('DD MMMM YYYY')}
+                description={item.location}
                 onPress={() =>
-                  Actions.detailConsultation({token: token, idPatient: item.id})
+                  Actions.detailConsultation({referralId: item.referralId})
                 }
               />
             )}

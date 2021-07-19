@@ -3,6 +3,7 @@ import LottieView from 'lottie-react-native';
 
 export const Container = styled.View`
   flex: 1;
+  position: absolute;
 `;
 
 export const Lottie = styled(LottieView)`

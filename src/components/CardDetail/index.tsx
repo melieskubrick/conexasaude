@@ -29,7 +29,6 @@ export const CardDetail = ({
   color,
   icon,
   onPress,
-  smallTitle,
 }: CardSelectProps) => {
   return (
     <Card bgColor={color} onPress={onPress}>

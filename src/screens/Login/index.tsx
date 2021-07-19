@@ -13,36 +13,55 @@ import {Button} from '../../components/Button';
 import Input from '../../components/Input';
 import {Container} from './styles';
 import Header from '../../components/Header';
+import {useEffect} from 'react';
+import {useState} from 'react';
+import Loading from '../../utils/Loading';
+
+type IResponse = {
+  id: string;
+  source: string;
+  name: string;
+  enrollment: number;
+  ssn: string;
+};
 
 const Login = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
+  const [userData, setUserData] = useState<IResponse>({} as IResponse);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSignIn = async (data: SignInCredentials) => {
-    if (!data.email || !data.senha) {
+    setLoading(true);
+    if (!data.login || !data.password) {
       Alert.alert('Preencha todos os campos');
+      setLoading(false);
       return;
     }
     try {
-      const response = await api.post('api/login', data);
+      const response = await api.post('/user/authenticate', data);
+      setUserData(response.data);
+      console.log(response.data);
+      setLoading(false);
       if (!response.data) {
         console.log('error');
         return;
       }
-      const dataResponse = response.data;
-      storeToken(dataResponse.data.token);
+      userId(userData.id);
       Actions.listConsultations();
+      return;
     } catch (e) {}
   };
 
-  const storeToken = async (token: string) => {
+  const userId = async (user_id: string) => {
     try {
-      await AsyncStorage.setItem('@TOKEN', token);
+      await AsyncStorage.setItem('@USER_ID', user_id);
     } catch (e) {}
   };
 
   return (
     <>
+      {loading && <Loading visible={true} />}
       <Header title="Login" />
       <Container
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -52,9 +71,9 @@ const Login = () => {
             autoCorrect={false}
             autoCapitalize="none"
             keyboardType="email-address"
-            name="email"
+            name="login"
             icon="user"
-            placeholder="E-mail"
+            placeholder="CPF"
             returnKeyType="next"
             onSubmitEditing={() => {
               passwordInputRef.current?.focus();
@@ -65,7 +84,7 @@ const Login = () => {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Senha secreta"
-            name="senha"
+            name="password"
             icon="lock"
             secureTextEntry
             returnKeyType="send"

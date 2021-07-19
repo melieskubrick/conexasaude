@@ -5843,6 +5843,11 @@ react-native-animated-component@^0.1.0:
   resolved "https://registry.yarnpkg.com/react-native-animated-component/-/react-native-animated-component-0.1.0.tgz#646e7a51850678406a08ff82279fca5df68e303d"
   integrity sha512-wWnbsImUbMOWUWzTVQ4XrLTWaWCZGrjmFcK4rQFIwV4ADO78VVb19wPUS4hGxm/iSy8HB959iqvj9r15kyc0CA==
 
+react-native-base64@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-base64/-/react-native-base64-0.2.1.tgz#3d0e73a649c4c0129f7b7695d3912456aebae847"
+  integrity sha512-eHgt/MA8y5ZF0aHfZ1aTPcIkDWxza9AaEk4GcpIX+ZYfZ04RcaNahO+527KR7J44/mD3efYfM23O2C1N44ByWA==
+
 react-native-codegen@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
