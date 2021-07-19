@@ -1,15 +1,8 @@
 import React from 'react';
 
-import {GestureResponderEvent, Text} from 'react-native';
+import {GestureResponderEvent} from 'react-native';
 
-import {
-  Card,
-  Title,
-  Image,
-  Detail,
-  AlignHorizontal,
-  Description,
-} from './styles';
+import {Card, Title, Detail, AlignHorizontal, Description} from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
 import colors from '../../config/colors';

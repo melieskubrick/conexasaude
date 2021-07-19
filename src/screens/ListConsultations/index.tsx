@@ -74,18 +74,18 @@ const ListConsultations = () => {
   return (
     <>
       <Header
-        onPressLeft={() => Actions.pop()}
-        iconLeft="arrow-left"
+        // onPressLeft={() => Actions.pop()}
+        // iconLeft="arrow-left"
         title="Consultas agendadas"
-        iconRight="user-plus"
-        onPressRight={() => Actions.createConsultation()}
+        // iconRight="user-plus"
+        // onPressRight={() => Actions.createConsultation()}
       />
       <Container>
         <Animation>
           <FlatList
             showsVerticalScrollIndicator={false}
             data={data}
-            keyExtractor={item => item.id}
+            keyExtractor={item => `${item.referralId}`}
             contentContainerStyle={{
               paddingBottom: getStatusBarHeight(),
               paddingTop: 8,

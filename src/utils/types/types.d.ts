@@ -3,6 +3,12 @@ type SignInCredentials = {
   password: string;
 };
 
+type PasswordCredentials = {
+  pwdCurrent: string;
+  pwdNew: string;
+  pwdNewConf: string;
+};
+
 type CreateConsultationCredentials = {
   idMedico: number;
   paciente: string;
@@ -36,6 +42,7 @@ type ScheduleDetails = {
 };
 
 type PatientDetails = {
+  id?: string;
   enrollment: number;
   name: string;
   ssn: string;

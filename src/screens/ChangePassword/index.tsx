@@ -22,77 +22,79 @@ type IResponse = {
   ssn: string;
 };
 
-const Login = () => {
+interface IUser {
+  userId: string;
+}
+
+const ChangePassword = ({userId}: IUser) => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSignIn = async (data: SignInCredentials) => {
+  const changePassword = async (data: PasswordCredentials) => {
     setLoading(true);
-    if (!data.login || !data.password) {
+    if (!data.pwdCurrent || !data.pwdNew || !data.pwdNewConf) {
       Alert.alert('Preencha todos os campos');
       setLoading(false);
       return;
     }
     try {
-      const response = await api.post('/user/authenticate', data);
+      const response = await api.post(`/user/${userId}/changePwd`, data);
       setLoading(false);
       if (!response.data) {
         console.log('error');
         return;
       }
-      console.log('resposta', response.data.code);
       if (response.data.code === 0) {
         Alert.alert(response.data.message);
       } else {
-        userId(response.data.id, response.data);
-        Actions.listConsultations();
+        Alert.alert(response.data.message);
+        Actions.pop();
       }
-    } catch (e) {}
-  };
-
-  const userId = async (user_id: string, user_data: object) => {
-    try {
-      await AsyncStorage.setItem('@USER_ID', user_id);
-      await AsyncStorage.setItem('@USER_DATA', JSON.stringify(user_data));
     } catch (e) {}
   };
 
   return (
     <>
       {loading && <Loading visible={true} />}
-      <Header title="Login" />
+      <Header
+        title="Alterar minha senha"
+        iconLeft="arrow-left"
+        onPressLeft={() => Actions.pop()}
+      />
       <Container
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled>
-        <Form ref={formRef} onSubmit={handleSignIn}>
+        <Form ref={formRef} onSubmit={changePassword}>
           <Input
             autoCorrect={false}
             autoCapitalize="none"
             keyboardType="email-address"
-            name="login"
-            icon="user"
-            placeholder="CPF"
-            returnKeyType="next"
-            onSubmitEditing={() => {
-              passwordInputRef.current?.focus();
-            }}
+            name="pwdCurrent"
+            icon="lock"
+            secureTextEntry
+            placeholder="Senha atual"
           />
           <Input
             ref={passwordInputRef}
             autoCorrect={false}
             autoCapitalize="none"
-            placeholder="Senha secreta"
-            name="password"
+            placeholder="Nova senha"
+            name="pwdNew"
             icon="lock"
             secureTextEntry
-            returnKeyType="send"
-            onSubmitEditing={() => {
-              formRef.current?.submitForm();
-            }}
+          />
+          <Input
+            ref={passwordInputRef}
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Confirmar nova senha"
+            name="pwdNewConf"
+            icon="lock"
+            secureTextEntry
           />
           <Button
-            title="Logar"
+            title="Confirmar"
             buttonColor={colors.blue}
             onPress={() => {
               formRef.current?.submitForm();
@@ -104,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ChangePassword;

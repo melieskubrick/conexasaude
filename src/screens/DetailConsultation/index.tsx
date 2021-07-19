@@ -45,16 +45,6 @@ const DetailConsultation = ({referralId}: Props) => {
     detailConsultation();
   }, [referralId]);
 
-  useEffect(() => {
-    {
-      data.partner && console.log('caiu1');
-    }
-    {
-      !data.partner && console.log('caiu2');
-    }
-    console.log('data', data);
-  }, [data]);
-
   return (
     <>
       {loading && <Loading visible={true} />}
@@ -68,22 +58,25 @@ const DetailConsultation = ({referralId}: Props) => {
           {data.source && doctor.professional && (
             <>
               <CardDetail
-                title="Local:"
+                title="Local da consulta:"
                 color="white"
                 icon="user"
-                description={data.source.name}
+                description={`${data.source.name}\ntelefone: ${data.source.phone}\natendente: ${data.source.contact}`}
               />
               <CardDetail
                 title="Nome do paciente:"
                 color="white"
                 icon="user"
-                description={data.patient.name}
+                description={`${data.patient.name}`}
               />
               <CardDetail
-                title={'Nome do médico:'}
+                title={'Dados do médico:'}
                 color="white"
                 icon="user"
-                description={doctor.professional.name || 'Sem médico'}
+                description={
+                  `${doctor.professional.name}\ntelefone: ${doctor.phone}\nCRM:${doctor.professional.affiliation.number}` ||
+                  'Sem médico'
+                }
               />
               <CardDetail
                 title={'Data da consulta:'}
