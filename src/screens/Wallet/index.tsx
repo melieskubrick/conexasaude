@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import api from '../../services/api';
 
-import Orientation from 'react-native-orientation';
 import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
 
@@ -12,6 +11,7 @@ import {
   Title,
   Horizontal,
   Row,
+  RowInfo,
 } from './styles';
 import moment from 'moment';
 
@@ -34,19 +34,19 @@ const Wallet = ({userId}: IUser) => {
       }
     };
     fetchCardUserData();
-  }, [userId]);
+    // Orientation.lockToLandscape();
+  }, []);
 
   return (
     <Container>
       <Header
         title="Carteirinha"
         iconLeft="arrow-left"
-        onPressLeft={() => {
-          Actions.pop();
-          Orientation.lockToPortrait();
-        }}
+        onPressLeft={() => Actions.pop()}
       />
-      <ContainerWallet>
+      <ContainerWallet
+      //  style={{ transform: [{ rotate: '90deg' }] }}
+      >
         {/* <Avatar
           source={{
             uri:
@@ -55,34 +55,57 @@ const Wallet = ({userId}: IUser) => {
         /> */}
         {cardUserData.user && (
           <>
-            <Horizontal>
+            <Horizontal
+              style={{
+                transform: [{rotate: '90deg'}],
+              }}>
               <Row>
-                <Title>Nome Completo</Title>
-                <Desc>{cardUserData.user.name}</Desc>
-                <Title>Sexo</Title>
-                <Desc>
-                  {cardUserData.user.gender === 'M' ? 'Masculino' : 'Feminino'}
-                </Desc>
-                <Title>Unidade de Associação</Title>
-                <Desc>{cardUserData.issuer.name}</Desc>
-                <Title>SSN</Title>
-                <Desc>{cardUserData.user.ssn}</Desc>
+                <RowInfo>
+                  <Title>Nome Completo</Title>
+                  <Desc>{cardUserData.user.name}</Desc>
+                </RowInfo>
+                <RowInfo>
+                  <Title>Sexo</Title>
+                  <Desc>
+                    {cardUserData.user.gender === 'M'
+                      ? 'Masculino'
+                      : 'Feminino'}
+                  </Desc>
+                </RowInfo>
+                <RowInfo>
+                  <Title>Unidade de Associação</Title>
+                  <Desc>{cardUserData.issuer.name}</Desc>
+                </RowInfo>
               </Row>
               <Row>
-                <Title>Data de nascimento</Title>
-                <Desc>
-                  {moment(cardUserData.user.birthDate).format('DD/MM/YYYY')}
-                </Desc>
-                <Title>Telefone da Associação</Title>
-                <Desc>{cardUserData.issuer.phone}</Desc>
-                <Title>Tipo de Associação</Title>
-                <Desc>{cardUserData.user.type}</Desc>
-                <Title>Whatsapp da Associação</Title>
-                <Desc>{cardUserData.user.type}</Desc>
+                <RowInfo>
+                  <Title>SSN</Title>
+                  <Desc>{cardUserData.user.ssn}</Desc>
+                </RowInfo>
+                <RowInfo>
+                  <Title>Data de nascimento</Title>
+                  <Desc>
+                    {moment(cardUserData.user.birthDate).format('DD/MM/YYYY')}
+                  </Desc>
+                </RowInfo>
+                <RowInfo>
+                  <Title>Telefone da Associação</Title>
+                  <Desc>{cardUserData.issuer.phone}</Desc>
+                </RowInfo>
               </Row>
               <Row>
-                <Title>Idade</Title>
-                <Desc>{cardUserData.user.age}</Desc>
+                <RowInfo>
+                  <Title>Tipo de Associação</Title>
+                  <Desc>{cardUserData.user.type}</Desc>
+                </RowInfo>
+                <RowInfo>
+                  <Title>Whatsapp da Associação</Title>
+                  <Desc>{cardUserData.user.type}</Desc>
+                </RowInfo>
+                <RowInfo>
+                  <Title>Idade</Title>
+                  <Desc>{cardUserData.user.age}</Desc>
+                </RowInfo>
               </Row>
             </Horizontal>
           </>

@@ -87,19 +87,18 @@ const ListConsultations = () => {
         // onPressRight={() => Actions.createConsultation()}
       />
       <Container>
-        <Animation>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={data}
-            keyExtractor={item => `${item.referralId}`}
-            // eslint-disable-next-line react-native/no-inline-styles
-            contentContainerStyle={{
-              paddingBottom: getStatusBarHeight(),
-              paddingTop: 8,
-            }}
-            onRefresh={() => onRefresh()}
-            refreshing={refreshing}
-            renderItem={({item}) => (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={data}
+          keyExtractor={item => `${item.referralId}`}
+          contentContainerStyle={{
+            paddingBottom: getStatusBarHeight(),
+            paddingTop: 8,
+          }}
+          onRefresh={() => onRefresh()}
+          refreshing={refreshing}
+          renderItem={({item}) => (
+            <Animation>
               <ItemList
                 imageText={getUserNameToAvatar(item.partner)}
                 title={item.partner}
@@ -110,9 +109,9 @@ const ListConsultations = () => {
                   Actions.detailConsultation({referralId: item.referralId})
                 }
               />
-            )}
-          />
-        </Animation>
+            </Animation>
+          )}
+        />
       </Container>
     </>
   );

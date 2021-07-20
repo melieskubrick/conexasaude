@@ -2,11 +2,12 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
 import typography from '../../config/typography';
 import colors from '../../config/colors';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
   background-color: ${colors.primary};
-  padding-top: 20px;
+  padding-top: ${getStatusBarHeight() + 20}px;
 `;
 
 export const Header = styled.View`

@@ -17,7 +17,6 @@ import {
   Logout,
 } from './styles';
 import {useEffect} from 'react';
-import Orientation from 'react-native-orientation';
 
 interface Item {
   key: string;
@@ -46,10 +45,6 @@ const Profile = () => {
       return false;
     }
   };
-
-  // useEffect(() => {
-  //   Orientation.lockToPortrait();
-  // });
 
   useEffect(() => {
     const getUserData = async () => {
@@ -87,7 +82,7 @@ const Profile = () => {
               name="Minha carteirinha"
               onPress={() => {
                 Actions.wallet({userId: userData && userData.id});
-                Orientation.lockToLandscapeLeft();
+                // Orientation.lockToLandscapeLeft();
               }}
               divider
             />
@@ -130,6 +125,7 @@ const Profile = () => {
         keyExtractor={item => item.key}
         stickyHeaderIndices={indexes}
         onRefresh={() => onRefresh()}
+        contentContainerStyle={{marginHorizontal: 0}}
         refreshing={refreshing}
       />
     </Container>
