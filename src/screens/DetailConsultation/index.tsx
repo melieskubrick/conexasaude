@@ -34,7 +34,6 @@ const DetailConsultation = ({referralId}: Props) => {
           return;
         }
         const detailsData: DetailConsultationProps = response.data;
-        console.log(detailsData);
         setData(detailsData);
         setDoctor(detailsData.partner);
         setLoading(false);
