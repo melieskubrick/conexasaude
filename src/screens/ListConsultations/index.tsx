@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +25,7 @@ type Schedule = {
 const ListConsultations = () => {
   const [data, setData] = useState<Schedule[]>([{} as Schedule]);
   const [userID, setUserID] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
 
   const getUserID = async () => {
     try {
@@ -35,7 +36,12 @@ const ListConsultations = () => {
     } catch (e) {}
   };
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+  }, []);
+
   useEffect(() => {
+    console.log('oi');
     getUserID();
     const listConsultations = async () => {
       try {
@@ -48,7 +54,8 @@ const ListConsultations = () => {
       } catch (e) {}
     };
     listConsultations();
-  }, [userID]);
+    setRefreshing(false);
+  }, [userID, refreshing]);
 
   if (!data) {
     return (
@@ -90,6 +97,8 @@ const ListConsultations = () => {
               paddingBottom: getStatusBarHeight(),
               paddingTop: 8,
             }}
+            onRefresh={() => onRefresh()}
+            refreshing={refreshing}
             renderItem={({item}) => (
               <ItemList
                 imageText={getUserNameToAvatar(item.partner)}
