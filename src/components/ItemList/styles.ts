@@ -1,7 +1,7 @@
 import colors from '../../config/colors';
 import styled from 'styled-components/native';
 import typography from '../../config/typography';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 export const Card = styled.TouchableOpacity`
@@ -20,7 +20,7 @@ export const Icon = styled(FeatherIcon)`
 export const ContainerDetail = styled.View`
   flex-direction: row;
   align-items: center;
-  margin: 4px 0
+  margin: 4px 0;
 `;
 
 export const Right = styled.View`
@@ -46,12 +46,13 @@ export const Title = styled.Text`
   font-size: 20px;
   font-family: ${typography.bold};
   color: ${colors.gray};
-  width: ${Dimensions.get('window').width / 1.8};
+  width: ${Dimensions.get('window').width / 1.8}px;
 `;
 
 export const TitleDetail = styled.Text`
   font-size: 18px;
   font-family: ${typography.light};
   color: ${colors.gray};
-  width: ${Dimensions.get('window').width / 1.8};
+  width: ${Dimensions.get('window').width / 1.8}px;
+  top: 2px;
 `;

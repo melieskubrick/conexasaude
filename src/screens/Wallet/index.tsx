@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 import Orientation from 'react-native-orientation';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import Header from '../../components/Header';
 
 import {
@@ -19,7 +19,7 @@ interface IUser {
   userId: string;
 }
 
-const Wallet = ({userId}: IUser) => {
+const Wallet = ({ userId }: IUser) => {
   const [cardUserData, setCardUserData] = useState<CardDetails>(
     {} as CardDetails,
   );
@@ -65,24 +65,24 @@ const Wallet = ({userId}: IUser) => {
                 </Desc>
                 <Title>Unidade de Associação</Title>
                 <Desc>{cardUserData.issuer.name}</Desc>
-              </Row>
-              <Row>
                 <Title>SSN</Title>
                 <Desc>{cardUserData.user.ssn}</Desc>
+              </Row>
+              <Row>
                 <Title>Data de nascimento</Title>
                 <Desc>
                   {moment(cardUserData.user.birthDate).format('DD/MM/YYYY')}
                 </Desc>
                 <Title>Telefone da Associação</Title>
                 <Desc>{cardUserData.issuer.phone}</Desc>
-              </Row>
-              <Row>
                 <Title>Tipo de Associação</Title>
                 <Desc>{cardUserData.user.type}</Desc>
-                <Title>Idade</Title>
-                <Desc>{cardUserData.user.age}</Desc>
                 <Title>Whatsapp da Associação</Title>
                 <Desc>{cardUserData.user.type}</Desc>
+              </Row>
+              <Row>
+                <Title>Idade</Title>
+                <Desc>{cardUserData.user.age}</Desc>
               </Row>
             </Horizontal>
           </>

@@ -4,6 +4,7 @@ import typography from '../../config/typography';
 
 export const Container = styled.View`
   flex: 1;
+  background-color: ${colors.primary};
 `;
 export const ContainerWallet = styled.View`
   flex: 1;
@@ -12,6 +13,7 @@ export const ContainerWallet = styled.View`
   border-radius: 30px;
   border-color: ${colors.blue};
   padding: 30px;
+  background-color: white;
 `;
 
 export const Row = styled.View`

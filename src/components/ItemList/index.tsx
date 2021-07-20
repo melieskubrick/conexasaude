@@ -1,5 +1,5 @@
 import React from 'react';
-import {GestureResponderEvent} from 'react-native';
+import { GestureResponderEvent } from 'react-native';
 import colors from '../../config/colors';
 
 import {
@@ -36,7 +36,7 @@ export const ItemList = ({
         <TextImage>{imageText}</TextImage>
       </Image>
       <Right>
-        <Title numberOfLines={1} ellipsizeMode="tail">
+        <Title numberOfLines={2} ellipsizeMode="tail">
           {title}
         </Title>
         <ContainerDetail>
@@ -48,7 +48,7 @@ export const ItemList = ({
           <TitleDetail>{consultation}</TitleDetail>
         </ContainerDetail>
         <ContainerDetail>
-          <Icon name="file" size={22} color={colors.gray} />
+          <Icon name="map-pin" size={22} color={colors.gray} />
           <TitleDetail>{description}</TitleDetail>
         </ContainerDetail>
       </Right>

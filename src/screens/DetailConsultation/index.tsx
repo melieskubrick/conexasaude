@@ -1,24 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
-import {Actions} from 'react-native-router-flux';
-import {CardDetail} from '../../components/CardDetail';
+import { Actions } from 'react-native-router-flux';
+import { CardDetail } from '../../components/CardDetail';
 import colors from '../../config/colors';
 import api from '../../services/api';
 
-import {Container} from './styles';
+import { Container } from './styles';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
 import Animation from '../../utils/Animation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 type Props = {
   referralId: string;
 };
 
-const DetailConsultation = ({referralId}: Props) => {
+const DetailConsultation = ({ referralId }: Props) => {
   const [data, setData] = useState<DetailConsultationProps>(
     {} as DetailConsultationProps,
   );
@@ -40,7 +41,7 @@ const DetailConsultation = ({referralId}: Props) => {
         setData(detailsData);
         setDoctor(detailsData.partner);
         setLoading(false);
-      } catch (e) {}
+      } catch (e) { }
     };
     detailConsultation();
   }, [referralId]);
@@ -51,9 +52,11 @@ const DetailConsultation = ({referralId}: Props) => {
       <Header
         onPressLeft={() => Actions.pop()}
         iconLeft="arrow-left"
-        title="Detalhe da consulta"
+        title="Detalhe do agendamento"
       />
-      <Container showsVerticalScrollIndicator={false}>
+      <Container
+        contentContainerStyle={{ paddingBottom: getStatusBarHeight() }}
+        showsVerticalScrollIndicator={false}>
         <Animation>
           {data.source && doctor.professional && (
             <>
