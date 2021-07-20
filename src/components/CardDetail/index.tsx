@@ -9,7 +9,7 @@ import colors from '../../config/colors';
 
 interface CardSelectProps {
   title: string;
-  description: string;
+  description: string | string[];
   color: string;
   icon: string;
   smallTitle?: boolean;

@@ -91,16 +91,31 @@ const DetailConsultation = ({referralId}: Props) => {
                 }
               />
               <CardDetail
-                title={'Observações:'}
-                color="white"
-                icon="file"
-                description={data.schedule.note || 'Sem observações'}
-              />
-              <CardDetail
                 title={'Local da Consulta:'}
                 color="white"
                 icon="file"
-                description={`${data.partner.address.location},${data.partner.address.number}\n${data.partner.address.district},${data.partner.address.city},${data.partner.address.state}\n${data.partner.address.country}`}
+                description={`${data.partner.address.location}, ${data.partner.address.number}\n${data.partner.address.district}, ${data.partner.address.city}\n${data.partner.address.state}, ${data.partner.address.country}`}
+              />
+              <CardDetail
+                title={'Procedimentos:'}
+                color="white"
+                icon="file"
+                description={
+                  data.procedures.map(
+                    procedure =>
+                      `${procedure.name}\nQuantidade: ${procedure.quantity}\nValor: R$ ${procedure.amount}\n`,
+                  ) || 'Sem observações'
+                }
+              />
+              <CardDetail
+                title={'Pagamento:'}
+                color="white"
+                icon="file"
+                description={
+                  `${data.payment.map(
+                    payment => `${payment.name}\nValor: R$ ${payment.value}`,
+                  )}` || 'Sem observações'
+                }
               />
               <CardDetail
                 title={'Observações:'}

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList} from 'react-native';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import moment from 'moment';
 import 'moment/locale/pt-br';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
-import { Container } from './styles';
+import {Container} from './styles';
 import ItemList from '../../components/ItemList';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
@@ -32,7 +32,7 @@ const ListConsultations = () => {
       if (user_id !== null) {
         setUserID(user_id);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const ListConsultations = () => {
         }
         const schedule_data: Schedule[] = response.data;
         setData(schedule_data);
-      } catch (e) { }
+      } catch (e) {}
     };
     listConsultations();
   }, [userID]);
@@ -77,8 +77,8 @@ const ListConsultations = () => {
         // onPressLeft={() => Actions.pop()}
         // iconLeft="arrow-left"
         title="Consultas agendadas"
-      // iconRight="user-plus"
-      // onPressRight={() => Actions.createConsultation()}
+        // iconRight="user-plus"
+        // onPressRight={() => Actions.createConsultation()}
       />
       <Container>
         <Animation>
@@ -90,7 +90,7 @@ const ListConsultations = () => {
               paddingBottom: getStatusBarHeight(),
               paddingTop: 8,
             }}
-            renderItem={({ item }) => (
+            renderItem={({item}) => (
               <ItemList
                 imageText={getUserNameToAvatar(item.partner)}
                 title={item.partner}
@@ -98,7 +98,7 @@ const ListConsultations = () => {
                 consultation={moment(item.scheduleDate).format('DD MMMM YYYY')}
                 description={item.location}
                 onPress={() =>
-                  Actions.detailConsultation({ referralId: item.referralId })
+                  Actions.detailConsultation({referralId: item.referralId})
                 }
               />
             )}
