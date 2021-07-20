@@ -41,7 +41,6 @@ const ListConsultations = () => {
   }, []);
 
   useEffect(() => {
-    console.log('oi');
     getUserID();
     const listConsultations = async () => {
       try {

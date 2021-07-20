@@ -5,7 +5,6 @@ import 'moment/locale/pt-br';
 
 import {Actions} from 'react-native-router-flux';
 import {CardDetail} from '../../components/CardDetail';
-import colors from '../../config/colors';
 import api from '../../services/api';
 
 import {Container} from './styles';
@@ -29,8 +28,6 @@ const DetailConsultation = ({referralId}: Props) => {
   useEffect(() => {
     const detailConsultation = async () => {
       const user_id = await AsyncStorage.getItem('@USER_ID');
-      console.log('id do usuario', user_id);
-      console.log('referencia', referralId);
       try {
         const response = await api.get(`/schedules/${user_id}/${referralId}`);
         if (!response.data) {
