@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {useEffect} from 'react';
 import {useState} from 'react';
+import Orientation from 'react-native-orientation';
 import {Router, Stack, Scene, Tabs} from 'react-native-router-flux';
 import colors from '../config/colors';
 import typography from '../config/typography';
@@ -39,6 +40,7 @@ const App = () => {
   useEffect(() => {
     getUserID();
     setLoading(true);
+    Orientation.lockToPortrait();
   }, []);
 
   if (loadingVisible) {

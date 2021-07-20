@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {FlatList, Keyboard} from 'react-native';
+import {FlatList} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Actions} from 'react-native-router-flux';
 
@@ -12,12 +12,12 @@ import {
   Container,
   ContainerProfileInfo,
   Name,
-  Since,
   ContainerTexts,
   ContainerLogout,
   Logout,
 } from './styles';
 import {useEffect} from 'react';
+import Orientation from 'react-native-orientation';
 
 interface Item {
   key: string;
@@ -25,13 +25,11 @@ interface Item {
   isTitle?: boolean;
 }
 
-const buttonStyle = {marginTop: 32, flex: 1, marginRight: 5};
-const defaultAvatar = require('../../assets/avatar_example.png');
-const SVGDefault = 'https://application-customer.s3.amazonaws.com/avatar.svg';
+// const buttonStyle = {marginTop: 32, flex: 1, marginRight: 5};
+// const defaultAvatar = require('../../assets/avatar_example.png');
+// const SVGDefault = 'https://application-customer.s3.amazonaws.com/avatar.svg';
 
 const Profile = () => {
-  // const {theme} = useTheme();
-  const [visible, setVisible] = useState(false);
   const [userData, setUserData] = useState<PatientDetails>();
   const [refreshing, setRefreshing] = useState(false);
 
@@ -50,6 +48,10 @@ const Profile = () => {
       return false;
     }
   };
+
+  // useEffect(() => {
+  //   Orientation.lockToPortrait();
+  // });
 
   useEffect(() => {
     const getUserData = async () => {
@@ -85,13 +87,18 @@ const Profile = () => {
             <ListItem
               icon="user"
               name="Minha carteirinha"
-              onPress={() => Actions.wallet()}
+              onPress={() => {
+                Actions.wallet({userId: userData && userData.id}),
+                  Orientation.lockToLandscapeLeft();
+              }}
               divider
             />
             <ListItem
               icon="lock"
               name="Trocar minha senha"
-              onPress={() => Actions.changePassword({userId: userData.id})}
+              onPress={() =>
+                Actions.changePassword({userId: userData && userData.id})
+              }
               divider
             />
           </>
@@ -115,7 +122,6 @@ const Profile = () => {
       data: items,
       indexes: indexesNumber,
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
   return (

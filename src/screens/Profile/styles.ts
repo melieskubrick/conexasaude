@@ -23,14 +23,11 @@ export const HeaderTitle = styled.Text`
   color: ${colors.gray};
 `;
 
-export const ContainerTexts = styled.View`
-  margin-left: 16px;
-`;
+export const ContainerTexts = styled.View``;
 
 export const Name = styled.Text`
   font-family: ${typography.bold};
   font-size: 22px;
-  margin-bottom: 10px;
   color: ${colors.blue};
 `;
 

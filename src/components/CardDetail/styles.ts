@@ -29,16 +29,16 @@ export const Detail = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 24px;
-  font-family: ${typography.light};
+  font-size: 16px;
+  font-family: ${typography.bold};
   color: ${colors.blue};
   text-align: right;
   margin: 24px 20px 0 -20px;
 `;
 
 export const Description = styled.Text`
-  font-size: 22px;
-  font-family: ${typography.bold};
+  font-size: 18px;
+  font-family: ${typography.regular};
   color: ${colors.blue};
   text-align: left;
   margin: 10px 24px 24px 24px;

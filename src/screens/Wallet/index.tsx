@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import api from '../../services/api';
+
+import Orientation from 'react-native-orientation';
 import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
 
 import {
-  Avatar,
   Container,
   ContainerWallet,
   Desc,
@@ -11,37 +13,80 @@ import {
   Horizontal,
   Row,
 } from './styles';
+import moment from 'moment';
 
-const Wallet = () => {
+interface IUser {
+  userId: string;
+}
+
+const Wallet = ({userId}: IUser) => {
+  const [cardUserData, setCardUserData] = useState<CardDetails>(
+    {} as CardDetails,
+  );
+
+  const fetchCardUserData = async () => {
+    try {
+      const response = await api.get(`/user/${userId}/card`);
+      setCardUserData(response.data);
+    } catch (exception) {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    fetchCardUserData();
+  }, []);
+
   return (
     <Container>
       <Header
         title="Carteirinha"
         iconLeft="arrow-left"
-        onPressLeft={() => Actions.pop()}
+        onPressLeft={() => {
+          Actions.pop(), Orientation.lockToPortrait();
+        }}
       />
       <ContainerWallet>
-        {/* <Avatar source={require('../../assets/avatar.jpeg')} /> */}
-        <Horizontal>
-          <Row>
-            <Title>Nome Completo</Title>
-            <Desc>Pedro da Silva Santos</Desc>
-            <Title>SSN</Title>
-            <Desc>123456</Desc>
-          </Row>
-          <Row>
-            <Title>Data de nascimento</Title>
-            <Desc>20/12/1999</Desc>
-            <Title>Sexo</Title>
-            <Desc>Masculino</Desc>
-          </Row>
-          <Row>
-            <Title>Celular</Title>
-            <Desc>85 99988-7766</Desc>
-            <Title>Plano de saúde</Title>
-            <Desc>Amil</Desc>
-          </Row>
-        </Horizontal>
+        {/* <Avatar
+          source={{
+            uri:
+              'https://www.woolha.com/media/2020/03/flutter-circleavatar-radius.jpg',
+          }}
+        /> */}
+        {cardUserData.user && (
+          <>
+            <Horizontal>
+              <Row>
+                <Title>Nome Completo</Title>
+                <Desc>{cardUserData.user.name}</Desc>
+                <Title>Sexo</Title>
+                <Desc>
+                  {cardUserData.user.gender === 'M' ? 'Masculino' : 'Feminino'}
+                </Desc>
+                <Title>Unidade de Associação</Title>
+                <Desc>{cardUserData.issuer.name}</Desc>
+              </Row>
+              <Row>
+                <Title>SSN</Title>
+                <Desc>{cardUserData.user.ssn}</Desc>
+                <Title>Data de nascimento</Title>
+                <Desc>
+                  {moment(cardUserData.user.birthDate).format('DD/MM/YYYY')}
+                </Desc>
+                <Title>Telefone da Associação</Title>
+                <Desc>{cardUserData.issuer.phone}</Desc>
+              </Row>
+              <Row>
+                <Title>Tipo de Associação</Title>
+                <Desc>{cardUserData.user.type}</Desc>
+                <Title>Idade</Title>
+                <Desc>{cardUserData.user.age}</Desc>
+                <Title>Whatsapp da Associação</Title>
+                <Desc>{cardUserData.user.type}</Desc>
+              </Row>
+            </Horizontal>
+          </>
+        )}
       </ContainerWallet>
     </Container>
   );

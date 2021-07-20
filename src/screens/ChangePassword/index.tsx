@@ -2,7 +2,6 @@ import React, {useRef, useState} from 'react';
 import {Alert, Platform, TextInput} from 'react-native';
 import colors from '../../config/colors';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import api from '../../services/api';
@@ -13,14 +12,6 @@ import Input from '../../components/Input';
 import {Container} from './styles';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
-
-type IResponse = {
-  id: string;
-  source: string;
-  name: string;
-  enrollment: number;
-  ssn: string;
-};
 
 interface IUser {
   userId: string;

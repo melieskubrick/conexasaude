@@ -10,7 +10,7 @@ import {Actions} from 'react-native-router-flux';
 
 import {Button} from '../../components/Button';
 import Input from '../../components/Input';
-import {Container} from './styles';
+import {Container, Logo} from './styles';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
 
@@ -41,7 +41,6 @@ const Login = () => {
         console.log('error');
         return;
       }
-      console.log('resposta', response.data.code);
       if (response.data.code === 0) {
         Alert.alert(response.data.message);
       } else {
@@ -65,6 +64,7 @@ const Login = () => {
       <Container
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled>
+        <Logo source={require('../../assets/images/logo.png')} />
         <Form ref={formRef} onSubmit={handleSignIn}>
           <Input
             autoCorrect={false}

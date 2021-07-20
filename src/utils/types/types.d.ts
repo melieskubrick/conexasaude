@@ -42,7 +42,7 @@ type ScheduleDetails = {
 };
 
 type PatientDetails = {
-  id?: string;
+  id: string;
   enrollment: number;
   name: string;
   ssn: string;
@@ -88,4 +88,27 @@ type ProceduresDetails = {
 type PaymentDetails = {
   name: string;
   value: number;
+};
+
+type CardDetails = {
+  enrollment: number;
+  enrollmentDate: string;
+  user: CardUserDetails;
+  issuer: CardIssuerDetails;
+};
+
+type CardUserDetails = {
+  name: string;
+  ssn: string;
+  type: string;
+  gender: string;
+  birthDate: string;
+  age: number;
+};
+
+type CardIssuerDetails = {
+  source: string;
+  name: string;
+  phone: string;
+  whatsApp: string;
 };
