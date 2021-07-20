@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import api from '../../services/api';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
 
 import {
@@ -14,21 +14,24 @@ import {
   RowInfo,
 } from './styles';
 import moment from 'moment';
+import Loading from '../../utils/Loading';
 
 interface IUser {
   userId: string;
 }
 
-const Wallet = ({ userId }: IUser) => {
+const Wallet = ({userId}: IUser) => {
   const [cardUserData, setCardUserData] = useState<CardDetails>(
     {} as CardDetails,
   );
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCardUserData = async () => {
       try {
         const response = await api.get(`/user/${userId}/card`);
         setCardUserData(response.data);
+        setLoading(false);
       } catch (exception) {
         return false;
       }
@@ -39,6 +42,7 @@ const Wallet = ({ userId }: IUser) => {
 
   return (
     <>
+      {loading && <Loading visible={true} />}
       <Header
         title="Carteirinha"
         iconLeft="arrow-left"
@@ -58,7 +62,7 @@ const Wallet = ({ userId }: IUser) => {
             <>
               <Horizontal
                 style={{
-                  transform: [{ rotate: '90deg' }],
+                  transform: [{rotate: '90deg'}],
                 }}>
                 <Row>
                   <RowInfo>
