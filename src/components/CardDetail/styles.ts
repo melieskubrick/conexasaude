@@ -8,7 +8,7 @@ interface CardProps {
 
 export const Card = styled.TouchableOpacity<CardProps>`
   border-radius: 10px;
-  background: ${({bgColor}) => bgColor};
+  background: ${({ bgColor }) => bgColor};
   width: 100%;
   margin: 4px;
   justify-content: space-between;
@@ -38,11 +38,11 @@ export const Title = styled.Text`
 
 export const Description = styled.Text`
   font-size: 18px;
-  font-family: ${typography.regular};
+  font-family: ${typography.light};
   color: ${colors.blue};
   text-align: left;
   margin: 10px 24px 24px 24px;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   max-height: 90px;
   text-align: right;
 `;
