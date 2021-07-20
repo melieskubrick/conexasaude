@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +25,7 @@ type Schedule = {
 const ListConsultations = () => {
   const [data, setData] = useState<Schedule[]>([{} as Schedule]);
   const [userID, setUserID] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
 
   const getUserID = async () => {
     try {
@@ -34,6 +35,10 @@ const ListConsultations = () => {
       }
     } catch (e) { }
   };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+  }, []);
 
   useEffect(() => {
     getUserID();
@@ -48,7 +53,8 @@ const ListConsultations = () => {
       } catch (e) { }
     };
     listConsultations();
-  }, [userID]);
+    setRefreshing(false);
+  }, [userID, refreshing]);
 
   if (!data) {
     return (
@@ -81,16 +87,18 @@ const ListConsultations = () => {
       // onPressRight={() => Actions.createConsultation()}
       />
       <Container>
-        <Animation>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={data}
-            keyExtractor={item => `${item.referralId}`}
-            contentContainerStyle={{
-              paddingBottom: getStatusBarHeight(),
-              paddingTop: 8,
-            }}
-            renderItem={({ item }) => (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={data}
+          keyExtractor={item => `${item.referralId}`}
+          contentContainerStyle={{
+            paddingBottom: getStatusBarHeight(),
+            paddingTop: 8,
+          }}
+          onRefresh={() => onRefresh()}
+          refreshing={refreshing}
+          renderItem={({ item }) => (
+            <Animation>
               <ItemList
                 imageText={getUserNameToAvatar(item.partner)}
                 title={item.partner}
@@ -101,9 +109,9 @@ const ListConsultations = () => {
                   Actions.detailConsultation({ referralId: item.referralId })
                 }
               />
-            )}
-          />
-        </Animation>
+            </Animation>
+          )}
+        />
       </Container>
     </>
   );

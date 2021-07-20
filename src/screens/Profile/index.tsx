@@ -40,9 +40,7 @@ const Profile = () => {
   const logout = async () => {
     Actions.replace('login');
     try {
-      console.log(AsyncStorage.getItem('@USER_ID'));
       await AsyncStorage.removeItem('@USER_ID');
-      console.log(AsyncStorage.getItem('@USER_ID'));
       return true;
     } catch (exception) {
       return false;
