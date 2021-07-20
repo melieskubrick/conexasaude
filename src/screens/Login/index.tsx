@@ -69,7 +69,7 @@ const Login = () => {
           <Input
             autoCorrect={false}
             autoCapitalize="none"
-            keyboardType="email-address"
+            keyboardType="number-pad"
             name="login"
             icon="user"
             placeholder="CPF"

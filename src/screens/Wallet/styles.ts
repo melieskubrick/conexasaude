@@ -12,7 +12,7 @@ export const ContainerWallet = styled.View`
   border-width: 4px;
   border-radius: 30px;
   border-color: ${colors.blue};
-  padding: 30px;
+  padding: 10px;
   background-color: white;
 `;
 
@@ -32,10 +32,10 @@ export const Title = styled.Text`
   font-family: ${typography.bold};
   font-size: 16px;
   color: ${colors.blue};
-  margin-top: 20px;
 `;
 export const Desc = styled.Text`
   font-family: ${typography.regular};
   font-size: 16px;
+  margin-bottom: 4px;
   color: ${colors.gray};
 `;

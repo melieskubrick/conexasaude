@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
-import { Actions } from 'react-native-router-flux';
-import { CardDetail } from '../../components/CardDetail';
+import {Actions} from 'react-native-router-flux';
+import {CardDetail} from '../../components/CardDetail';
 import colors from '../../config/colors';
 import api from '../../services/api';
 
-import { Container } from './styles';
+import {Container} from './styles';
 import Header from '../../components/Header';
 import Loading from '../../utils/Loading';
 import Animation from '../../utils/Animation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 type Props = {
   referralId: string;
 };
 
-const DetailConsultation = ({ referralId }: Props) => {
+const DetailConsultation = ({referralId}: Props) => {
   const [data, setData] = useState<DetailConsultationProps>(
     {} as DetailConsultationProps,
   );
@@ -41,7 +41,7 @@ const DetailConsultation = ({ referralId }: Props) => {
         setData(detailsData);
         setDoctor(detailsData.partner);
         setLoading(false);
-      } catch (e) { }
+      } catch (e) {}
     };
     detailConsultation();
   }, [referralId]);
@@ -55,7 +55,7 @@ const DetailConsultation = ({ referralId }: Props) => {
         title="Detalhe do agendamento"
       />
       <Container
-        contentContainerStyle={{ paddingBottom: getStatusBarHeight() }}
+        contentContainerStyle={{paddingBottom: getStatusBarHeight()}}
         showsVerticalScrollIndicator={false}>
         <Animation>
           {data.source && doctor.professional && (
@@ -89,6 +89,18 @@ const DetailConsultation = ({ referralId }: Props) => {
                   moment(data.schedule.date).format('DD MMMM YYYY') ||
                   'Sem data'
                 }
+              />
+              <CardDetail
+                title={'Observações:'}
+                color="white"
+                icon="file"
+                description={data.schedule.note || 'Sem observações'}
+              />
+              <CardDetail
+                title={'Local da Consulta:'}
+                color="white"
+                icon="file"
+                description={`${data.partner.address.location},${data.partner.address.number}\n${data.partner.address.district},${data.partner.address.city},${data.partner.address.state}\n${data.partner.address.country}`}
               />
               <CardDetail
                 title={'Observações:'}

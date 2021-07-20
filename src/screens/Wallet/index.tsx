@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import api from '../../services/api';
 
 import Orientation from 'react-native-orientation';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import Header from '../../components/Header';
 
 import {
@@ -19,7 +19,7 @@ interface IUser {
   userId: string;
 }
 
-const Wallet = ({ userId }: IUser) => {
+const Wallet = ({userId}: IUser) => {
   const [cardUserData, setCardUserData] = useState<CardDetails>(
     {} as CardDetails,
   );
