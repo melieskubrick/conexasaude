@@ -86,8 +86,8 @@ const Profile = () => {
               icon="user"
               name="Minha carteirinha"
               onPress={() => {
-                Actions.wallet({userId: userData && userData.id}),
-                  Orientation.lockToLandscapeLeft();
+                Actions.wallet({userId: userData && userData.id});
+                Orientation.lockToLandscapeLeft();
               }}
               divider
             />

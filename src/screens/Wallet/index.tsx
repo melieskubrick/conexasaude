@@ -24,18 +24,17 @@ const Wallet = ({userId}: IUser) => {
     {} as CardDetails,
   );
 
-  const fetchCardUserData = async () => {
-    try {
-      const response = await api.get(`/user/${userId}/card`);
-      setCardUserData(response.data);
-    } catch (exception) {
-      return false;
-    }
-  };
-
   useEffect(() => {
+    const fetchCardUserData = async () => {
+      try {
+        const response = await api.get(`/user/${userId}/card`);
+        setCardUserData(response.data);
+      } catch (exception) {
+        return false;
+      }
+    };
     fetchCardUserData();
-  }, []);
+  }, [userId]);
 
   return (
     <Container>
@@ -43,7 +42,8 @@ const Wallet = ({userId}: IUser) => {
         title="Carteirinha"
         iconLeft="arrow-left"
         onPressLeft={() => {
-          Actions.pop(), Orientation.lockToPortrait();
+          Actions.pop();
+          Orientation.lockToPortrait();
         }}
       />
       <ContainerWallet>

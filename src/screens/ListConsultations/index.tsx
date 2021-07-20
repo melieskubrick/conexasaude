@@ -92,6 +92,7 @@ const ListConsultations = () => {
             showsVerticalScrollIndicator={false}
             data={data}
             keyExtractor={item => `${item.referralId}`}
+            // eslint-disable-next-line react-native/no-inline-styles
             contentContainerStyle={{
               paddingBottom: getStatusBarHeight(),
               paddingTop: 8,
