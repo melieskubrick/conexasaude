@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {useEffect} from 'react';
-import {useState} from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Orientation from 'react-native-orientation';
-import {Router, Stack, Scene, Tabs} from 'react-native-router-flux';
+import { Router, Stack, Scene, Tabs } from 'react-native-router-flux';
 import colors from '../config/colors';
 import typography from '../config/typography';
 import ChangePassword from '../screens/ChangePassword';
@@ -11,9 +11,9 @@ import CreateConsultation from '../screens/CreateConsultation';
 import DetailConsultation from '../screens/DetailConsultation';
 import ListConsultations from '../screens/ListConsultations';
 import Login from '../screens/Login';
-import {Container} from '../screens/Login/styles';
+import { Container } from '../screens/Login/styles';
 import Profile from '../screens/Profile';
-import {IconFeather} from '../screens/Profile/styles';
+import { IconFeather } from '../screens/Profile/styles';
 import Wallet from '../screens/Wallet';
 import Loading from '../utils/Loading';
 
@@ -34,7 +34,7 @@ const App = () => {
         setUserID(user_id);
       }
       setLoading(false);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const App = () => {
           <Scene
             key="listConsultations"
             component={ListConsultations}
-            icon={({focused}) => (
+            icon={({ focused }) => (
               <IconFeather
                 name="list"
                 size={24}
@@ -89,7 +89,7 @@ const App = () => {
             component={Profile}
             title="Perfil"
             hideNavBar
-            icon={({focused}) => (
+            icon={({ focused }) => (
               <IconFeather
                 name="user"
                 size={24}

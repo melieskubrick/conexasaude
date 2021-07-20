@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import colors from '../../config/colors';
 import typography from '../../config/typography';
@@ -10,17 +11,26 @@ export const ContainerWallet = styled.View`
   flex: 1;
   margin: 20px;
   border-width: 4px;
-  border-radius: 30px;
+  border-radius: 20px;
   border-color: ${colors.blue};
-  padding: 10px;
   background-color: white;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const RowInfo = styled.View`
+  margin: 12px 0;
 `;
 
 export const Row = styled.View`
-  margin: 0 8px;
+  /* margin: 0px 18px; */
+  justify-content: space-between;
+  align-self: center;
 `;
 export const Horizontal = styled.View`
   flex-direction: row;
+  align-self: center;
+  justify-content: flex-start;
 `;
 
 export const Avatar = styled.Image`
@@ -32,8 +42,12 @@ export const Title = styled.Text`
   font-family: ${typography.bold};
   font-size: 16px;
   color: ${colors.blue};
+  width: 200px;
+  margin-right: 20px;
 `;
 export const Desc = styled.Text`
+  width: 200px;
+  margin-right: 20px;
   font-family: ${typography.regular};
   font-size: 16px;
   margin-bottom: 4px;

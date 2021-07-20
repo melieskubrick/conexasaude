@@ -9,7 +9,7 @@ export const Card = styled.TouchableOpacity`
   border-radius: 10px;
   background: white;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   margin: 5px 0;
 `;
 
@@ -34,18 +34,20 @@ export const Image = styled.View`
   background: ${colors.primary};
   align-items: center;
   justify-content: center;
+  border-width: 2px;
+  border-color: ${colors.blue};
 `;
 
 export const TextImage = styled.Text`
   font-size: 24px;
   font-family: ${typography.regular};
-  color: ${colors.gray};
+  color: ${colors.blue};
 `;
 
 export const Title = styled.Text`
   font-size: 20px;
   font-family: ${typography.bold};
-  color: ${colors.gray};
+  color: ${colors.blue};
   width: ${Dimensions.get('window').width / 1.8}px;
 `;
 

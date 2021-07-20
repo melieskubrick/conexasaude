@@ -1,8 +1,8 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {FlatList} from 'react-native';
+import { FlatList } from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 import ListItem from './ListItem';
 
@@ -16,7 +16,7 @@ import {
   ContainerLogout,
   Logout,
 } from './styles';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import Orientation from 'react-native-orientation';
 
 interface Item {
@@ -49,10 +49,6 @@ const Profile = () => {
     }
   };
 
-  // useEffect(() => {
-  //   Orientation.lockToPortrait();
-  // });
-
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -65,7 +61,7 @@ const Profile = () => {
     getUserData();
   }, [userData]);
 
-  const {data, indexes} = React.useMemo(() => {
+  const { data, indexes } = React.useMemo(() => {
     setRefreshing(false);
 
     const items: Item[] = [
@@ -88,8 +84,8 @@ const Profile = () => {
               icon="user"
               name="Minha carteirinha"
               onPress={() => {
-                Actions.wallet({userId: userData && userData.id}),
-                  Orientation.lockToLandscapeLeft();
+                Actions.wallet({ userId: userData && userData.id });
+                // Orientation.lockToLandscapeLeft();
               }}
               divider
             />
@@ -97,7 +93,7 @@ const Profile = () => {
               icon="lock"
               name="Trocar minha senha"
               onPress={() =>
-                Actions.changePassword({userId: userData && userData.id})
+                Actions.changePassword({ userId: userData && userData.id })
               }
               divider
             />
@@ -128,10 +124,11 @@ const Profile = () => {
     <Container>
       <FlatList<Item>
         data={data}
-        renderItem={({item}) => item.render()}
+        renderItem={({ item }) => item.render()}
         keyExtractor={item => item.key}
         stickyHeaderIndices={indexes}
         onRefresh={() => onRefresh()}
+        contentContainerStyle={{ marginHorizontal: 0 }}
         refreshing={refreshing}
       />
     </Container>
